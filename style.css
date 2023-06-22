@@ -1,0 +1,45 @@
+.gameTitle{
+    border: solid black; 
+    text-align: center;
+}
+.mainBox{
+    border: solid green; 
+    height: 90vh; 
+    width: 100%; 
+    background-image: url("https://thumbs.gfycat.com/AnimatedDeficientAlleycat-size_restricted.gif");
+    background-size: cover;
+    background-size: 100%;background-size: 100vw 100vh;
+}
+.shipContainer{
+    border: solid blue; 
+    height: 50vh; 
+    display: flex; 
+}
+.eachShipContainerL,.eachShipContainerR{
+    border: solid yellow; 
+    height: 50vh; 
+    width: 50%; 
+    display: flex; 
+    align-content: center;
+    justify-content: center;
+}
+.buttonContainer{
+    border: solid red; 
+    height: 5vh; 
+}
+.displayContainer{
+    border: solid purple; 
+    height: 20vh; 
+    display: flex; 
+}
+.displayBoxes{
+    border: solid black; 
+    height: 20vh; 
+    width: 50%; 
+    display: flex; 
+   
+}
+.displayBoxesInside{
+    display: flex; 
+    flex-direction: column;
+}
