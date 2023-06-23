@@ -6,13 +6,13 @@ let america = {
     name: "america", 
     hull: 20,
     firepower: 5, 
-    accuracy: 7 
+    accuracy: 5 
 }
 // aliens Object 
 let alien = {
     name: "alien",  
     hull: getRandomInt(2,6), 
-    firepower: getRandomInt(2,4),
+    firepower: getRandomInt(4,8),
     accuracy: getRandomInt(4,8),
     hoardCount: 6
 }
@@ -51,11 +51,10 @@ const alienAttack = () => {
 
         alienHullCheck(isHit2)
    
-        // americaAttack()
     } else {
         gameOver() 
     }
-    
+     
 }
 
 const alienHullCheck = (isHit2) => {
@@ -66,30 +65,35 @@ const alienHullCheck = (isHit2) => {
 
         document.querySelector(".rightHull").innerHTML = "Hull Report: "; 
          
-        if (america.hull <= alienFirepower) {
+        america.hull -= alienFirepower
 
+        document.querySelector(".rightHull").innerHTML += "America damaged, americaHull hit with Alien firepower: " + alienFirepower + " New Hull value = " + america.hull; 
+
+        if (america.hull < 1) {
+
+            gameOver()
             document.querySelector(".rightHull").innerHTML += "America Destroyed, americaHull: " + america.hull + " is less than Alien firepower: " + alienFirepower; 
         
-            document.querySelector(".rightHull").innerHTML += "AMERICA DESTROYED"; 
+            document.querySelector(".buttonContainer").innerHTML += "   Aliens Prevail..."
             
         } else {
 
-            america.hull -= alienFirepower
-
-            document.querySelector(".rightHull").innerHTML += "America damaged, americaHull hit with Alien firepower: " + alienFirepower + " New Hull value = " + america.hull; 
+      
         }
     } 
 }
 
 const americaAttack = () => {
 
+    // clearAll()
+
     if (alien.hoardCount > 0){
 
         let shotPercent = doesShotHit()
         let isHit = new Boolean()
 
-        document.querySelector(".leftDisplayBox").innerHTML = "America shot suceeded?  (sucess range: 1-7)  Value: " + shotPercent; 
-
+        document.querySelector(".leftDisplayBox").innerHTML = "America shot suceeded?  (sucess range: 1-" + america.firepower + ")  Value: " + shotPercent; 
+//-----------shotPercent -------------does shot hit is ran btwn 1-10
         if ( shotPercent <= america.accuracy) {
             isHit = true
         } else {
@@ -111,22 +115,39 @@ const gameOver = () => {
     document.querySelector(".buttonContainer").innerHTML = "GAME OVER"
     document.getElementById("startBut").disabled = true;
     document.getElementById("alienBut").disabled = true;
+    if (alien.hoardCount == 0 ){
+        document.querySelector(".buttonContainer").innerHTML += "   American Hegemony Reigns Supreme!!!"
+    } else if (america.hull == 0) {
+        document.querySelector(".buttonContainer").innerHTML += "   Aliens Prevail..."
+    }
+}
+
+const clearAll = () => {
+
+    document.querySelector(".leftDisplayBox").innerHTML = ""; 
+    document.querySelector(".leftHull").innerHTML = ""; 
+    // document.querySelector(".leftFirePower").innerHTML = ""; 
+    // document.querySelector(".leftAccuracy").innerHTML = ""; 
     
+    document.querySelector(".rightDisplayBox").innerHTML = ""; 
+    document.querySelector(".rightHull").innerHTML = ""; 
+    document.querySelector(".rightFirePower").innerHTML = ""; 
+    document.querySelector(".rightHoardCount").innerHTML = ""; 
 }
 
 const americaHullCheck = (isHit) => {
-
+//  check for true ------------------------------
     let alienHull = alien.hull
 
     if (isHit == true) {
-
+        alien.hoardCount -= 1  // correct spot for this 
         document.querySelector(".leftHull").innerHTML = "Hull Report:  ";
         
         if (alienHull <= america.firepower) {
 
             document.querySelector(".leftHull").innerHTML += " Alien Destroyed, alienHull: " + alienHull + " is less than or equal to American firepower: " + america.firepower;
      
-            alien.hoardCount -= 1
+            
 
             document.querySelector(".rightHoardCount").innerHTML = "Hoard Count =  " + alien.hoardCount;
 
@@ -139,10 +160,4 @@ const americaHullCheck = (isHit) => {
     }
 }
 
-
-
-
-
-//americaAttack() 
-//console.log(""); 
 
