@@ -31,33 +31,33 @@ const doesShotHit = (alienOrAmerica) => {
     }
 }
 
-// const hullDamageReport = () => {
+const hullDamageReport = () => {
 
-// }
+}
 
-// const shipDestroyed = () => {
-//     doesShotHit()
-//     hullDamageReport()
-// }
+const shipDestroyed = () => {
+    doesShotHit()
+    hullDamageReport()
+}
 
-// const alienAttack = () => {
-//     // T or F ?  
-//     let hit = doesShotHit("aliens")
+const alienAttack = () => {
+    // T or F ?  
+    let hit = doesShotHit("aliens")
     
-//     pointsLost = aliens.firepower
+    pointsLost = aliens.firepower
 
-//     document.querySelector(".rightFirepower").innerHTML = "Firepower: " + pointsLost
+    document.querySelector(".rightFirepower").innerHTML = "Firepower: " + pointsLost
 
-//     if (hit == true) {
-//         america.hull -= pointsLost 
+    if (hit == true) {
+        america.hull -= pointsLost 
 
-//         document.querySelector(".leftHull").innerHTML = "Hull breach, Points lost: " + pointsLost + "Updated hull integrity: " + america.hull; 
+        document.querySelector(".leftHull").innerHTML = "Hull breach, Points lost: " + pointsLost + "Updated hull integrity: " + america.hull; 
 
 
-//     } else {
-//         document.querySelector(".leftHull").innerHTML = "Hull : " + america.hull; 
-//     }
-// }
+    } else {
+        document.querySelector(".leftHull").innerHTML = "Hull : " + america.hull; 
+    }
+}
 
 const attack = (alienOrAmerica) => {
     // T or F ?
